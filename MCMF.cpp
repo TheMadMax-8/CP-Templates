@@ -9,7 +9,7 @@ const int maxN = 1e5 + 10;
 using Pair = array<int, 2>;
 
 // MCMF Theorem.
-// USACO Guide (KACTL's Implementation) + CP Algorithpq.
+// USACO Guide (KACTL's Implementation) + CP Algorithms.
 
 struct Edge {
 
@@ -241,4 +241,5 @@ signed main() {
         runTestCases();
 
     return 0;
+
 }
