@@ -82,8 +82,8 @@ struct MCMF {
 
     Pair maxFlow_CP(int source, int sink) {
 
-        int flow = 0;
-        int cost = 0;
+        int netFlow = 0;
+        int netCost = 0;
 
         while ((path_CP(source, sink) == 1) and (distances[sink] < 0)) {
          
@@ -99,8 +99,9 @@ struct MCMF {
                 current = parent;
             }
 
-            flow += push;
-            cost += push * distances[sink];
+            netFlow += push;
+            netCost += push * distances[sink];
+            
             current = sink;
 
             while (current != source) {
@@ -117,7 +118,7 @@ struct MCMF {
             }
         }
 
-        return {flow, cost};
+        return {netFlow, netCost};
     }
 
     void path(int source) {
@@ -164,14 +165,15 @@ struct MCMF {
 
     Pair maxFlow_USACO(int source, int sink) {
 
-        int netFlow = 0, netCost = 0;
+        int netFlow = 0;
+        int netCost = 0;
 
         while (path(source), seen[sink]) {
 
             int push = INF;
             
             for (Edge* x = parents[sink]; x != 0; x = parents[x -> from])
-                push = min(push, x->capacity - x->flow);
+                push = min(push, x -> capacity - x -> flow);
 
             netFlow += push;
             
@@ -234,12 +236,11 @@ signed main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int T = 1;
-    // cin >> T;
+    int T;
+    cin >> T;
 
     while (T--) 
         runTestCases();
 
     return 0;
-
 }
