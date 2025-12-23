@@ -28,16 +28,16 @@ struct MCMF {
 
 	MCMF(int N) : N (N), edges (N), seen (N), distances (N), potentials (N), parents (N), parent_node (N), parent_edge (N) {}
 
-	void addEdge(int from, int to, int capacity, int cost) {
+    void addEdge(int from, int to, int capacity, int cost) {
 
-        if (from != to) {
+        if (from == to)
+            return;
 
-            edges[from].push_back(Edge {from, to, edges[to].size(), capacity, cost, 0});
-            edges[to].push_back(Edge {to, from, edges[from].size() -1, 0, -cost, 0});
-        }
+        edges[from].push_back(Edge {from, to, edges[to].size(), capacity, cost, 0});
+        edges[to].push_back(Edge {to, from, edges[from].size() -1, 0, -cost, 0});
 
         return;
-	}
+    }
 
     bool path_CP(int source, int sink) {
 
@@ -226,7 +226,6 @@ struct MCMF {
 };
 
 void runTestCases() {
-
     
     return;
 }
