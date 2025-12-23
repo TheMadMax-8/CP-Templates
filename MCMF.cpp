@@ -34,7 +34,7 @@ struct MCMF {
             return;
 
         edges[from].push_back(Edge {from, to, edges[to].size(), capacity, cost, 0});
-        edges[to].push_back(Edge {to, from, edges[from].size() -1, 0, -cost, 0});
+        edges[to].push_back(Edge {to, from, edges[from].size() - 1, 0, -cost, 0});
 
         return;
     }
